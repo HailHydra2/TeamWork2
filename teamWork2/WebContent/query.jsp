@@ -22,8 +22,6 @@
     <p style="font-size:20px;margin:16%;color:LightSlateGray" align="center">  欢迎使用口罩预约系统，如果你是一名想要预约口罩的用户，请点击【预约】进行口罩预约；如果你已经预约过了口罩可以点击【查询】来查询过往预约的最新动态。如果你是管理员请点击上方菜单栏的身份选项来进行切换。</p>
 
 
-
-
 <div style="text-align:center;clear:both"><br>
 <p></p>
 

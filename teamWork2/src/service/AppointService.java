@@ -1,30 +1,96 @@
 package service;
 
-import dao.AppointmentDao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import pojo.Appointment;
+import util.DBUtil;
 
 public class AppointService {
+
 	static public int turn = 0;
 	
-	public void beginAppoint() {
+
+	// 开始摇号及turn次数++
+  public void beginAppoint() {
 		turn++;
-	}
-	
-	public boolean doesCanAppoint(Appointment appointment) {
-		return true;
-	}
-	
-	public boolean doesJoinThisTurn(Appointment appointment) {
-		String PhoneNumber = appointment.getPhoneNumber();
-		String IdNumber = appointment.getidNumber();
-		return true;
-	}
-	
-	public boolean doesGetChanceBefore(Appointment appointment) {
+	}   
+
+	// 是否手机号以及身份证号已经在数据库中存在
+	public boolean doesHaveAppointed(Appointment appointment) {
+		String phoneString = appointment.getPhoneNumber();
+		String idString = appointment.getidNumber();
+		String sqlString = "select * form appointment where idNumber=idString or phoneNumber=phoneString";
+		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
+			ResultSet rs = ps.executeQuery();
+			if (rs == null) {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		return true;
 	}
 
-	public void insertIntoDataBase(AppointmentDao appp){
-
+	public Integer getChanceNum(Appointment appointment) {
+		int rowNum = 0;
+		String phoneString = appointment.getPhoneNumber();
+		String idString = appointment.getidNumber();
+		String sqlString = "select * form appointment where "
+				+ "(idNumber=idString or phoneNumber=phoneString) "
+				+ "and status=true";
+		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
+				ResultSet rs = ps.executeQuery();	
+					
+					while(rs.next()) {
+						rowNum++;
+					}
+		}
+			catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		return rowNum;
+		
 	}
+	
+	// 是否已经获取三次中签
+	public boolean lessThanThreeChance(Appointment appointment)  {
+	if(getChanceNum(appointment)<3) {
+		return false;}
+	else return true;
+	}
+	
+	// 是否能参与此次预约,如果
+		public boolean doesJoinThisAppoint(Appointment appointment) {
+			if(doesHaveAppointed(appointment)||lessThanThreeChance(appointment)) {
+				return true;
+			}
+			else
+			return false;
+		}
+
+
+	// 插入数据库
+	public void insertIntoDataBase(Appointment appointment) {
+String idString =appointment.getID();
+String nameString = appointment.getName();
+String idNumString = appointment.getidNumber();
+String phoneString = appointment.getPhoneNumber();
+Integer turnNum = turn;
+Integer quantity = appointment.getQuantity();
+Boolean status = appointment.getStatus();
+	String sqlString = "insert into appointment value"
+			+ "(idString,nameString,idNumString,phoneString,turnNum,quantity,status)";
+	try(Connection c = DBUtil.getConnection();
+			PreparedStatement ps = c.prepareStatement(sqlString);) {
+		ResultSet rs = ps.executeQuery(sqlString);
+	} catch (SQLException e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+}
 }

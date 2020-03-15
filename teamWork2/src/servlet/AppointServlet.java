@@ -7,12 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pojo.Appointment;
+import service.AppointService;
+
 /**
  * Servlet implementation class AppointServlet
  */
 @WebServlet("/AppointServlet")
 public class AppointServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static AppointService appointService = new AppointService();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,7 +31,28 @@ public class AppointServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String name = (String)request.getParameter("name");
+		String IdNumber = (String)request.getParameter("IdNumber");
+		String phoneNumber = (String)request.getParameter("phoneNumber");
+		String quantityString = (String)request.getParameter("quantity");
+		System.out.println(quantityString);
+		int quantity = Integer.parseInt(quantityString);
+		
+		System.out.println(name + " " + IdNumber +" " + phoneNumber + " " + quantity);
+		
+		Appointment appointment = new Appointment();
+		appointment.setName(name);
+		appointment.setIdNumber(IdNumber);
+		appointment.setPhoneNumber(phoneNumber);
+		appointment.setQuantity(quantity);
+		
+		if(appointService.doesCanAppoint(appointment)) {
+			
+		}else {
+			
+		}
 	}
 
 	/**
