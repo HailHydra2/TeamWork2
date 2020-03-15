@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,6 +10,24 @@
 <script>
 </script>
 <body>
+<%
+	if(request.getAttribute("book") == null){
+		request.setAttribute("book", 0);//未预定
+	}else if((int)request.getAttribute("book") == 1){
+%>
+	<script>
+		alert("预约成功");
+	</script>
+<% 
+	}else if(((int)request.getAttribute("book") == 2)){
+%>
+<script>
+	alert("您的身份证或电话号码已参与本轮预约或您已经成功中选三次不能在预约")；
+</script>
+<% 
+	}
+	request.setAttribute("book", 0);
+%>
 	<div class="wrapper">
 		<div class="container">
 			<ul class="menu" rel="sam1">
@@ -23,7 +40,7 @@
 		<p class="title" align="center">口罩预约系统</p>
 	</div>
 	<div style="text-align: center;">
-		<form action="AppointServlet">
+		<form action="AppointServlet?flag=book">
 			<p style="font-size: 22px; margin: 16% 0% 2%; color: LightSlateGray"
 				align="center">
 				真实姓名&nbsp;&nbsp; <input type="text" name="name">

@@ -1,3 +1,4 @@
+<%@page import="pojo.Appointment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,7 +7,22 @@
 <title>口罩预约系统-FZU软件工程九头蛇小组</title>
 <link type="text/css" rel="stylesheet" media="all" href="css/styles.css" />
 </head>
-
+<%
+	if(request.getAttribute("result") == null){
+%>
+	<script>
+		alert("抱歉您还未预约");
+	</script>
+<% 
+	}else{
+		Appointment appointment = (Appointment)request.getAttribute("result");
+%>
+<script>
+	alert("恭喜您中选");
+</script>
+<% 
+	}
+%>
 <body>
     <div class="wrapper">
         <div class="container">
@@ -21,9 +37,9 @@
     </div>
 
 	<div style="text-align: center;">
-		<form>
+		<form action="acquireServlet?flag=query">
 		<p style="font-size:22px;margin:16% 0% 2%;color:LightSlateGray" align="center">预约编号&nbsp;&nbsp;
-		<input type="text">
+		<input type="text" name="ID">
 		</p>
 		
 		<input style="font-size:16px ;margin:0px auto 2%;width: 260px;text-align: center;" type="submit" value="查询">

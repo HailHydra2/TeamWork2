@@ -31,8 +31,8 @@ public class AppointServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//request.setCharacterEncoding("utf-8");
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String name = (String)request.getParameter("name");
 		String IdNumber = (String)request.getParameter("IdNumber");
 		String phoneNumber = (String)request.getParameter("phoneNumber");
@@ -50,10 +50,11 @@ public class AppointServlet extends HttpServlet {
 		
 		if(appointService.doesJoinThisAppoint(appointment)) {
 			appointService.insertIntoDataBase(appointment);
+			request.setAttribute("book", 1);
 		}else {
-			request.setAttribute("error", 1);
-			request.getRequestDispatcher("").forward(request, response);
+			request.setAttribute("book", 2);
 		}
+		request.getRequestDispatcher("book.jsp").forward(request, response);
 
 	}
 
