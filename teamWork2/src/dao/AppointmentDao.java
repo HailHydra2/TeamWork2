@@ -17,7 +17,7 @@ public class AppointmentDao {
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                int id = rs.getInt(1);
+                int id = rs.getInt(0);
                 a.setID(String.valueOf(id));
             }
         } catch (SQLException e) {
