@@ -47,7 +47,7 @@ public class AppointServlet extends HttpServlet {
 		appointment.setIdNumber(IdNumber);
 		appointment.setPhoneNumber(phoneNumber);
 		appointment.setQuantity(quantity);
-		
+		System.out.println(appointService.doesJoinThisAppoint(appointment));
 		if(appointService.doesJoinThisAppoint(appointment)) {
 			appointService.insertIntoDataBase(appointment);
 			request.setAttribute("book", 1);

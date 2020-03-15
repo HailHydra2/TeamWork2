@@ -28,13 +28,13 @@ public class AppointService {
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
 			ResultSet rs = ps.executeQuery();
 			if (rs == null) {
-				return false;
+				return true;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return true;
+		return false;
 	}
 
 	public Integer getChanceNum(Appointment appointment) {
@@ -61,14 +61,14 @@ public class AppointService {
 	// 是否已经获取三次中签
 	public boolean lessThanThreeChance(Appointment appointment) {
 		if (getChanceNum(appointment) < 3) {
-			return false;
-		} else
 			return true;
+		} else
+			return false;
 	}
 
 	// 是否能参与此次预约,如果
 	public boolean doesJoinThisAppoint(Appointment appointment) {
-		if (doesHaveAppointed(appointment) || lessThanThreeChance(appointment)) {
+		if (doesHaveAppointed(appointment) && lessThanThreeChance(appointment)) {
 			return true;
 		} else
 			return false;

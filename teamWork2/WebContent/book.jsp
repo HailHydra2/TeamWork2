@@ -22,7 +22,7 @@
 	}else if(((int)request.getAttribute("book") == 2)){
 %>
 <script>
-	alert("您的身份证或电话号码已参与本轮预约或您已经成功中选三次不能在预约")；
+	alert("您的身份证或电话号码已参与本轮预约或您已经成功中选三次不能在预约");
 </script>
 <% 
 	}
