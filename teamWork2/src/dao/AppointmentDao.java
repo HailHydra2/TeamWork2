@@ -7,7 +7,8 @@ public class AppointmentDao {
 		
 	}
 	
-	public Appointment get(String ID) {
+	static public Appointment get(String sql) {
 		return null;
 	}
+
 }

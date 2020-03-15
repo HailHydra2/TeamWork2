@@ -1,22 +1,30 @@
 package service;
 
 import dao.AppointmentDao;
+import pojo.Appointment;
 
 public class AppointService {
-static public boolean inInDataBase(String ID) {
-	return false;
-}
+	static public int turn = 0;
+	
+	public void beginAppoint() {
+		turn++;
+	}
+	
+	public boolean doesCanAppoint(Appointment appointment) {
+		return true;
+	}
+	
+	public boolean doesJoinThisTurn(Appointment appointment) {
+		String PhoneNumber = appointment.getPhoneNumber();
+		String IdNumber = appointment.getidNumber();
+		return true;
+	}
+	
+	public boolean doesGetChanceBefore(Appointment appointment) {
+		return true;
+	}
 
-static public boolean isInSingleTurn(String ID) {
-	return false;
-} 
+	public void insertIntoDataBase(AppointmentDao appp){
 
-static public boolean isInMultipleTurn(String ID) {
-	return false;
-} 
-
-
-public void insertIntoDataBase(AppointmentDao appp){
-
-}
+	}
 }
