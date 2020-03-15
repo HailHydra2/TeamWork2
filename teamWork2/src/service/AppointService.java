@@ -65,10 +65,7 @@ public class AppointService {
 
 	// 是否能参与此次预约,如果
 	public boolean doesJoinThisAppoint(Appointment appointment) {
-		if(appointment.getQuantity()>totalNum) {
-			return false;
-		}
-		else if (doesHaveAppointed(appointment) || lessThanThreeChance(appointment)) {
+		if (doesHaveAppointed(appointment) || lessThanThreeChance(appointment)) {
 			return true;
 		} else
 			return false;
@@ -76,7 +73,14 @@ public class AppointService {
 
 	// 插入数据库
 	public void insertIntoDataBase(Appointment appointment) {
-		totalNum-=appointment.getQuantity();
+		if(appointment.getQuantity()>totalNum) {
+			totalNum-=appointment.getQuantity();	
+			appointment.setStatus(true);
+		}
+		else {
+			appointment.setStatus(false);
+		}
+		
 		String idString = appointment.getID();
 		String nameString = appointment.getName();
 		String idNumString = appointment.getidNumber();
