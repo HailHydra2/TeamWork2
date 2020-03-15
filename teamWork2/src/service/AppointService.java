@@ -22,7 +22,7 @@ public class AppointService {
 	public boolean doesHaveAppointed(Appointment appointment) {
 		String phoneString = appointment.getPhoneNumber();
 		String idString = appointment.getidNumber();
-		String sqlString = "select * form appointment where idNumber=idString or phoneNumber=phoneString";
+		String sqlString = "select * from appointment where idNumber"+idString +"or phoneNumber="+phoneString;
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
 			ResultSet rs = ps.executeQuery();
 			if (rs == null) {
@@ -39,8 +39,8 @@ public class AppointService {
 		int rowNum = 0;
 		String phoneString = appointment.getPhoneNumber();
 		String idString = appointment.getidNumber();
-		String sqlString = "select * form appointment where " + "(idNumber=idString or phoneNumber=phoneString) "
-				+ "and status=true";
+		String sqlString = "select * from appointment where " + "(idNumber="+idString +"or phoneNumber="+phoneString+
+				"and status=true";
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
 			ResultSet rs = ps.executeQuery();
 
