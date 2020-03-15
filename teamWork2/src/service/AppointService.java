@@ -10,6 +10,7 @@ import util.DBUtil;
 
 public class AppointService {
 
+	static public int totalNum =10;
 	static public int turn = 0;
 
 	// 开始摇号及turn次数++
@@ -64,7 +65,10 @@ public class AppointService {
 
 	// 是否能参与此次预约,如果
 	public boolean doesJoinThisAppoint(Appointment appointment) {
-		if (doesHaveAppointed(appointment) || lessThanThreeChance(appointment)) {
+		if(appointment.getQuantity()>totalNum) {
+			return false;
+		}
+		else if (doesHaveAppointed(appointment) || lessThanThreeChance(appointment)) {
 			return true;
 		} else
 			return false;
@@ -72,6 +76,7 @@ public class AppointService {
 
 	// 插入数据库
 	public void insertIntoDataBase(Appointment appointment) {
+		totalNum-=appointment.getQuantity();
 		String idString = appointment.getID();
 		String nameString = appointment.getName();
 		String idNumString = appointment.getidNumber();
