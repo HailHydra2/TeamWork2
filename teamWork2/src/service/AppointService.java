@@ -40,7 +40,7 @@ public class AppointService {
 		String phoneString = appointment.getPhoneNumber();
 		String idString = appointment.getidNumber();
 		String sqlString = "select * from appointment where " + "(idNumber="+idString +"or phoneNumber="+phoneString+
-				"and status=true";
+				"and status=true)";
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
 			ResultSet rs = ps.executeQuery();
 
@@ -89,7 +89,7 @@ public class AppointService {
 		Integer quantity = appointment.getQuantity();
 		Boolean status = appointment.getStatus();
 		String sqlString = "insert into appointment value"
-				+ "(idString,nameString,idNumString,phoneString,turnNum,quantity,status)";
+				+ "(+"+idString+","+nameString+","+idNumString+","+phoneString+","+turnNum+","+quantity+","+status+")";
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
 			ResultSet rs = ps.executeQuery(sqlString);
 		} catch (SQLException e) {
