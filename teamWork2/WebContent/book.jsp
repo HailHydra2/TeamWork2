@@ -8,6 +8,7 @@
 <link type="text/css" rel="stylesheet" media="all" href="css/styles.css" />
 </head>
 <script>
+
 </script>
 <body>
 <%
@@ -64,12 +65,15 @@
 			</p>
 			<input
 				style="font-size: 16px; margin: 0px auto 2%; width: 260px; text-align: center;"
-				type="submit" value="提 交" onclick="submit()"> <br /> <input
+				type="submit" value="提 交" id="subButton"> <br />
+		</form>
+		<form action="">
+			 <input
 				style="font-size: 14px; margin: 0px auto 2%; width: 80px; text-align: center;"
-				type="submit" value="开始预约"> <input
-				style="font-size: 14px; margin: 0px auto 2%; width: 80px; text-align: center;"
-				type="submit" value="结束预约"> <input
-				style="font-size: 14px; margin: 0px auto 16%; width: 95px; text-align: center;"
+				type="submit" value="开始预约" id="beginButton" onclick="begin()">
+				<input style="font-size: 14px; margin: 0px auto 2%; width: 80px; text-align: center;"
+				type="submit" value="结束预约" id="endButton" onclick="end()">
+				<input style="font-size: 14px; margin: 0px auto 16%; width: 95px; text-align: center;"
 				type="submit" value="设置口罩总量">
 		</form>
 	</div>

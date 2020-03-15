@@ -181,3 +181,11 @@ ul.vertical[rel=ver1] li a{
 ul.vertical[rel=ver1] li a:hover{
     background: transparent none;
 }
+
+.abled{
+	
+}
+
+.disabled{
+	disabled="disabled"
+}
