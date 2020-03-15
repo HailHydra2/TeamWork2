@@ -13,12 +13,12 @@ public class AppointService {
 	static public int turn = 0;
 	
 
-	// ¿ªÊ¼Ò¡ºÅ¼°turn´ÎÊı++
+	// å¼€å§‹æ‘‡å·åŠturnæ¬¡æ•°++
   public void beginAppoint() {
 		turn++;
 	}   
 
-	// ÊÇ·ñÊÖ»úºÅÒÔ¼°Éí·İÖ¤ºÅÒÑ¾­ÔÚÊı¾İ¿âÖĞ´æÔÚ
+	// æ˜¯å¦æ‰‹æœºå·ä»¥åŠèº«ä»½è¯å·å·²ç»åœ¨æ•°æ®åº“ä¸­å­˜åœ¨
 	public boolean doesHaveAppointed(Appointment appointment) {
 		String phoneString = appointment.getPhoneNumber();
 		String idString = appointment.getidNumber();
@@ -57,14 +57,14 @@ public class AppointService {
 		
 	}
 	
-	// ÊÇ·ñÒÑ¾­»ñÈ¡Èı´ÎÖĞÇ©
+	// æ˜¯å¦å·²ç»è·å–ä¸‰æ¬¡ä¸­ç­¾
 	public boolean lessThanThreeChance(Appointment appointment)  {
 	if(getChanceNum(appointment)<3) {
 		return false;}
 	else return true;
 	}
 	
-	// ÊÇ·ñÄÜ²ÎÓë´Ë´ÎÔ¤Ô¼,Èç¹û
+	// æ˜¯å¦èƒ½å‚ä¸æ­¤æ¬¡é¢„çº¦,å¦‚æœ
 		public boolean doesJoinThisAppoint(Appointment appointment) {
 			if(doesHaveAppointed(appointment)||lessThanThreeChance(appointment)) {
 				return true;
@@ -74,7 +74,7 @@ public class AppointService {
 		}
 
 
-	// ²åÈëÊı¾İ¿â
+	// æ’å…¥æ•°æ®åº“
 	public void insertIntoDataBase(Appointment appointment) {
 String idString =appointment.getID();
 String nameString = appointment.getName();
