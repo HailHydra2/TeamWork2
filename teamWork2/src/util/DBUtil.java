@@ -9,10 +9,10 @@ import java.sql.Statement;
 public class DBUtil {
 	static String ip = "127.0.0.1";
 	static int port = 3306;
-	static String database = "tmall";
+	static String database = "appointment";
 	static String encoding = "UTF-8";
 	static String loginName = "root";
-	static String password = "zxc258456.";
+	static String password = "123456";
 
 	static {
 		try {

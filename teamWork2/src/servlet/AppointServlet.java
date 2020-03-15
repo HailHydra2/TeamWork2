@@ -48,11 +48,13 @@ public class AppointServlet extends HttpServlet {
 		appointment.setPhoneNumber(phoneNumber);
 		appointment.setQuantity(quantity);
 		
-		if(appointService.doesCanAppoint(appointment)) {
-			
+		if(appointService.doesJoinThisAppoint(appointment)) {
+			appointService.insertIntoDataBase(appointment);
 		}else {
-			
+			request.setAttribute("error", 1);
+			request.getRequestDispatcher("").forward(request, response);
 		}
+
 	}
 
 	/**

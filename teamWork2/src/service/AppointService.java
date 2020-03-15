@@ -23,6 +23,7 @@ public class AppointService {
 		String phoneString = appointment.getPhoneNumber();
 		String idString = appointment.getidNumber();
 		String sqlString = "select * from appointment where idNumber"+idString +"or phoneNumber="+phoneString;
+		System.out.println(sqlString);
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
 			ResultSet rs = ps.executeQuery();
 			if (rs == null) {
@@ -41,6 +42,7 @@ public class AppointService {
 		String idString = appointment.getidNumber();
 		String sqlString = "select * from appointment where " + "(idNumber="+idString +"or phoneNumber="+phoneString+
 				"and status=true)";
+		System.out.println(sqlString);
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
 			ResultSet rs = ps.executeQuery();
 
