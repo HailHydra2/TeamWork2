@@ -11,6 +11,7 @@ import dao.AppointmentDao;
 import pojo.Appointment;
 
 public class AppointService {
+
 	static public int turn = 0;
 
 	// 开始摇号及turn次数++
@@ -51,7 +52,7 @@ public class AppointService {
 		String sqlString = "select * form appointment where idNumber=idString or phoneNumber=phoneString";
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sqlString);) {
 			ResultSet rs = ps.executeQuery();{
-				while(re)
+				
 			}
 			}
 		return true;
@@ -60,5 +61,6 @@ public class AppointService {
 	// 插入数据库
 	public void insertIntoDataBase(Appointment appointment) {
 
-	}
 }
+}
+
